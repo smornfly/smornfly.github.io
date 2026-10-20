@@ -1,0 +1,70 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects", ({ data }) => !data.draft);
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project }
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const date = project.data.date.toISOString().slice(0, 10).replaceAll("-", " / ");
+---
+
+<BaseLayout
+  title={project.data.title}
+  description={project.data.description}
+  page="works"
+  type="article"
+>
+  <header class="container article-header">
+    <a class="breadcrumb" href="/works/">← Back to works</a>
+    <h1>{project.data.title}</h1>
+    <p class="article-deck">{project.data.description}</p>
+    <div class="article-meta">
+      <span>{date}</span>
+      <span>{project.data.status}</span>
+      <span>{project.data.role || "个人项目"}</span>
+    </div>
+  </header>
+
+  <div class="container project-facts-wide">
+    <div class="work-fact">
+      <span>Role</span>
+      <strong>{project.data.role || "个人项目"}</strong>
+    </div>
+    <div class="work-fact">
+      <span>Status</span>
+      <strong>{project.data.status}</strong>
+    </div>
+    <div class="work-fact">
+      <span>Stack</span>
+      <strong>{project.data.stack.join(" · ") || "持续补充"}</strong>
+    </div>
+  </div>
+
+  <div class="article-layout project-article-layout">
+    <aside class="article-aside">
+      <strong>Project</strong>
+      {project.data.tags.join(" · ") || "In progress"}
+    </aside>
+    <article class="article-body" data-article-body>
+      <Content />
+      <footer class="article-end">
+        <span>最近更新 {date}</span>
+        <a class="next-post" href="/works/">
+          <span>Return</span>
+          全部作品 →
+        </a>
+      </footer>
+    </article>
+  </div>
+</BaseLayout>

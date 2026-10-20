@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="页面未找到" page="home">
+  <div class="container error-page">
+    <div>
+      <p class="error-code">404</p>
+      <h1>这里暂时没有内容。</h1>
+      <p>链接可能已经改变，或者这个页面还没有被写下。</p>
+      <a class="button button-primary" href="/">
+        返回首页
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 12h14M14 7l5 5-5 5"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</BaseLayout>

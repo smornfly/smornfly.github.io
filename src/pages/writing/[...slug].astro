@@ -1,0 +1,55 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleArt from "../../components/ArticleArt.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const date = post.data.date.toISOString().slice(0, 10).replaceAll("-", " / ");
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} page="writing" type="article">
+  <div class="reading-progress" data-reading-progress></div>
+
+  <header class="container article-header">
+    <a class="breadcrumb" href="/writing/">← Back to writing</a>
+    <h1>{post.data.title}</h1>
+    <p class="article-deck">{post.data.description}</p>
+    <div class="article-meta">
+      <time datetime={post.data.date.toISOString()}>{date}</time>
+      <span>{post.data.tags[0] || "Notes"}</span>
+      <span>Smornfly</span>
+    </div>
+  </header>
+
+  <ArticleArt label="FIELD NOTE / 13" />
+
+  <div class="article-layout">
+    <aside class="article-aside">
+      <strong>Tags</strong>
+      {post.data.tags.length ? post.data.tags.join(" · ") : "Field Notes"}
+    </aside>
+    <article class="article-body" data-article-body>
+      <Content />
+      <footer class="article-end">
+        <span>写于 {date}</span>
+        <a class="next-post" href="/writing/">
+          <span>Return</span>
+          全部文章 →
+        </a>
+      </footer>
+    </article>
+  </div>
+</BaseLayout>
