@@ -1,0 +1,26 @@
+---
+interface Props {
+  label?: string;
+}
+const { label = "FIELD NOTE" } = Astro.props;
+---
+
+<div class="article-hero-art" aria-hidden="true">
+  <svg viewBox="0 0 1040 520" preserveAspectRatio="xMidYMid slice">
+    <rect width="1040" height="520" fill="#172724"></rect>
+    <g opacity=".14" stroke="#f4f0e8">
+      <path d="M0 70h1040M0 140h1040M0 210h1040M0 280h1040M0 350h1040M0 420h1040"></path>
+      <path d="M90 0v520M220 0v520M350 0v520M480 0v520M610 0v520M740 0v520M870 0v520M1000 0v520"></path>
+    </g>
+    <path d="M65 370C185 370 180 185 320 190s120 155 228 111 100-146 230-120 126 76 195 20" fill="none" stroke="#d85f39" stroke-width="4"></path>
+    <g fill="#f4f0e8">
+      <circle cx="65" cy="370" r="7"></circle>
+      <circle cx="320" cy="190" r="7"></circle>
+      <circle cx="548" cy="301" r="7"></circle>
+      <circle cx="778" cy="181" r="7"></circle>
+      <circle cx="973" cy="201" r="7"></circle>
+    </g>
+    <text x="55" y="455" fill="#f4f0e8" fill-opacity=".6" font-family="monospace" font-size="15" letter-spacing="5">{label}</text>
+    <text x="900" y="455" fill="#f4f0e8" fill-opacity=".28" font-family="monospace" font-size="15">13 / OPEN</text>
+  </svg>
+</div>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Smornfly">
+  <rect width="64" height="64" rx="32" fill="#17211f"/>
+  <path d="M20 43 39 18l5 28-18-8" fill="none" stroke="#f4f0e8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="44" cy="46" r="3" fill="#d85f39"/>
+</svg>

@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+---
+
+<BaseLayout
+  title="关于"
+  description="关于 Smornfly / Field Notes，以及十三区这个持续生长的个人空间。"
+  page="about"
+>
+  <div class="container about-grid">
+    <aside class="about-side reveal">
+      <div class="portrait" aria-hidden="true">
+        <span class="portrait-initial">S</span>
+      </div>
+      <div class="about-side-note">
+        Smornfly / Field Notes<br>
+        A personal space in progress
+      </div>
+    </aside>
+
+    <section class="about-copy reveal">
+      <span class="mono-label">About this place</span>
+      <h1>十三区，是一块正在建设中的个人空间。</h1>
+      <p>
+        我是 <strong>Smornfly</strong>。这里会逐步收录我的博客、作品、技术实验，
+        以及那些值得被写下来、以后还会重新阅读的内容。
+      </p>
+      <p>
+        现在它还没有被经历填满，但这正是它真实的样子。
+        内容会随着实践慢慢增加，网站也会跟着这些内容一起成长。
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-time">Now</span>
+          <div>
+            <h2>从基础开始</h2>
+            <p>先建立可靠的内容系统，让每一次更新都简单、清楚、可回退。</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-time">Next</span>
+          <div>
+            <h2>记录真实实践</h2>
+            <p>把学习、实验和项目整理成可以分享、也可以重新阅读的内容。</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-time">Principle</span>
+          <div>
+            <h2>真实优先</h2>
+            <p>不用虚构经历填满首页，让每一篇内容和每一件作品都有出处。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-actions">
+        <a class="button button-primary" href={site.github} target="_blank" rel="noreferrer">
+          GitHub
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M14 7l5 5-5 5"></path>
+          </svg>
+        </a>
+        <a class="button button-secondary" href="/writing/">阅读博客</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
